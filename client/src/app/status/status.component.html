@@ -1,0 +1,128 @@
+<!-- filter things -->
+<nav class="navbar navbar-light filter-h">
+  <div class=" container-fluid">
+    <a class="navbar-brand"></a>
+    <form class="d-flex">
+
+      <div class="bg-primary">
+        <select>
+          <option>
+            <span>Years</span>
+          </option>
+          <option *ngFor="let yr of year">{{yr}}</option>
+        </select>
+      </div>
+
+      <div class="bg-primary">
+        <select>
+          <option>
+            <span>Months</span>
+          </option>
+          <option *ngFor="let mon of month">{{mon}}</option>
+        </select>
+      </div>
+
+    </form>
+  </div>
+</nav>
+
+
+<!-- status works! -->
+<nav class="status-m navbar navbar-expand-lg sta-col ">
+  <div class="container">
+    <div class="mx-auto collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="list-group navbar-nav d-flex justify-content-evenly">
+        <li class=" status  list-group-item-info rounded-pill border border-5" data-bs-dismiss="model">
+          PRESENT:{{count}}
+          <!-- :{{count}}  -->
+        </li>
+        <li class=" status list-group-item-info rounded-pill border border-5"> ABSENT </li>
+        <li class="status  list-group-item-info rounded-pill border border-5"> HALF-DAYS</li>
+        <li class=" status  list-group-item-info rounded-pill border border-5"> TOTAL-DAYS</li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- day -->
+
+<nav class="navbar navbar-light container days">
+  <div class="container-fluid">
+    <a class="navbar-brand" *ngFor="let day of days">{{day}}</a>
+  </div>
+</nav>
+
+
+
+<!-- box container  -->
+
+<div class="dflex container ">
+  <div class="card  rounded" data-bs-toggle="modal" data-bs-target="#exampleModal"
+    *ngFor="let i of getDate(ust); index as indexElement; let kk = index" #{{indexElement}} (click)="getId('col'+kk) ; getValue(indexElement+1)">
+    <!-- getId(this.indexElement)  -->
+    <div class="card-body bg-dark text-light">
+      <p class="card-text ">Day {{indexElement+1}} sep </p>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div  id="h" class="card-body" [id]="'col'+kk">
+        </div>
+        <div class="card-body" [id]="'col'+kk">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- <div class="dflex container ">
+  <div class="card shadow-lg p-3 mb-5 bg-body rounded" data-bs-toggle="modal" data-bs-target="#exampleModal"
+    *ngFor="let i of getDate(ust); index as indexElement; let kk = index" #{{indexElement}} (click)="getId('col'+kk) ; getValue(indexElement+1)"> -->
+    <!-- getId(this.indexElement)  -->
+    <!-- <div class="card-body bg-dark text-light">
+      <p class="card-text ">Day {{indexElement+1}} sep </p>
+    </div>
+    <div class="row  d-flex ">
+      <div class="col">
+    <div class="card-body" [id]="'col'+kk">
+      <p class="card-text"> color</p>
+    </div>
+    <div class="card-body" [id]="'col'+kk">
+      <p class="card-text"> color</p>
+    </div>
+  </div>
+</div>
+  </div>
+</div> -->
+
+<!-- pop up status (model)  -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Attendance Status</h3>
+      </div>
+      <div class="modal-body">
+        <button type="button" data-bs-dismiss="modal" class="btn btn-success btn-circle btn-xl "
+          (click)="colorId('green'); give(myname)">Present</button>
+        <!-- (click)="give(myname)"  -->
+        <button type="button" data-bs-dismiss="modal" class="btn btn-danger btn-circle btn-xl"
+          (click)="colorId('red')">Absent</button>
+        <button type="button" data-bs-dismiss="modal" class="btn btn-primary btn-circle btn-xl"
+          (click)="colorId('blue')">Half-day</button>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
